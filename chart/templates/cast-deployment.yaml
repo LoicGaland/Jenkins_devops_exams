@@ -17,6 +17,6 @@ spec:
       - name: cast-service
         image: blynhelb/castservice:{{ .Values.tag }}
         ports:
-          - containerPort: 8080
+          - containerPort: 8000
         command: ["uvicorn"]
         args: ["app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
