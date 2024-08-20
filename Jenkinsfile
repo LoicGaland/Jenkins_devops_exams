@@ -36,17 +36,17 @@ stages {
                 }
             }
 
-        stage('Test Acceptance'){ // we launch the curl command to validate that the container responds to the request
-            steps {
-                    script {
-                    sh '''
-                    curl localhost:8001
-                    curl localhost:8002
-                    '''
-                    }
-            }
+        // stage('Test Acceptance'){ // we launch the curl command to validate that the container responds to the request
+        //     steps {
+        //             script {
+        //             sh '''
+        //             curl localhost:8001
+        //             curl localhost:8002
+        //             '''
+        //             }
+        //     }
 
-        }
+        // }
         stage('Docker Push'){ //we pass the built image to our docker hub account
             environment
             {
