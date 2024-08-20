@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: cast-db-deployment
+  name: cast-db-statefulset
   labels:
     app: cast-db
 spec:
@@ -14,7 +14,7 @@ spec:
         app: cast-db
     spec:
       containers:
-      - name: cast_db
+      - name: cast-db
         image: postgres:12.1-alpine
         volumeMounts:
           - name: postgresdata

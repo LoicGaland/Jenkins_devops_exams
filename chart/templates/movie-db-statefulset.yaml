@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: movie-db-deployment
+  name: movie-db-statefulset
   labels:
     app: movie-db
 spec:
@@ -14,7 +14,7 @@ spec:
         app: movie-db
     spec:
       containers:
-      - name: movie_db
+      - name: movie-db
         image: postgres:12.1-alpine
         volumeMounts:
           - name: postgresdata

@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: cast-service
-        image: blynhelbcastservice:{{ .Values.tag }}
+        image: blynhelb/castservice:{{ .Values.tag }}
         ports:
           - containerPort: 8080
