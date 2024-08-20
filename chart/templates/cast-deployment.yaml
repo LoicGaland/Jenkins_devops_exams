@@ -18,3 +18,5 @@ spec:
         image: blynhelb/castservice:{{ .Values.tag }}
         ports:
           - containerPort: 8080
+        command: ["uvicorn"]
+        args: ["app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
