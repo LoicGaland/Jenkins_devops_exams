@@ -4,8 +4,7 @@ metadata:
   name: cast-db-pvc
 spec:
   accessModes:
-    - ReadWriteMany
-  storageClassName: local-path
+    - ReadWriteOnce
   resources:
     requests:
       storage: 5Gi
