@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-deployment
+  labels:
+    app: movie-service
+spec:
+  selector:
+    matchLabels:
+      app: movie-service
+  template:
+    metadata:
+      labels:
+        app: movie-service
+    spec:
+      containers:
+      - name: movie-service
+        image: blynhelb/movieservice:{{ .Values.tag }}
+        ports:
+          - containerPort: 8080

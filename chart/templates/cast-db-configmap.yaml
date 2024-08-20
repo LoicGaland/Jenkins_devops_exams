@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cast-db-configmap
+  labels:
+    app: cast-db
+data:
+    POSTGRES_DB: cast_db_dev

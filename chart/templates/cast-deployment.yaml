@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cast-deployment
+  labels:
+    app: cast-service
+spec:
+  selector:
+    matchLabels:
+      app: cast-service
+  template:
+    metadata:
+      labels:
+        app: cast-service
+    spec:
+      containers:
+      - name: cast-service
+        image: blynhelbcastservice:{{ .Values.tag }}
+        ports:
+          - containerPort: 8080

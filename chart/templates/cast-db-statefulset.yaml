@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cast-db-deployment
+  labels:
+    app: cast-db
+spec:
+  selector:
+    matchLabels:
+      app: cast-db
+  template:
+    metadata:
+      labels:
+        app: cast-db
+    spec:
+      containers:
+      - name: cast_db
+        image: postgres:12.1-alpine
+        volumeMounts:
+          - name: postgresdata
+            mountPath: /var/lib/postgresql/data/
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name:  cast-db-rootpass
+                key: username
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: cast-db-rootpass
+                key: password
+        envFrom:
+          - configMapRef:
+              name: cast-db-configmap
+      volumes:
+        - name: postgresdata
+          persistentVolumeClaim:
+            claimName: cast-db-pvc
