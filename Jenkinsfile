@@ -16,10 +16,6 @@ stages {
                  docker rm -f $SERVICE_MOVIE
                  docker build -t $DOCKER_ID/$DOCKER_IMAGE_MOVIE:$DOCKER_TAG ./movie-service
                 sleep 6
-                '''
-                }
-                script {
-                sh '''
                  docker rm -f $SERVICE_CAST
                  docker build -t $DOCKER_ID/$DOCKER_IMAGE_CAST:$DOCKER_TAG ./cast-service
                 sleep 6
@@ -33,12 +29,6 @@ stages {
                     sh '''
                     docker run -d -p 8001:8000 --name $SERVICE_MOVIE $DOCKER_ID/$DOCKER_IMAGE_MOVIE:$DOCKER_TAG uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
                     sleep 10
-                    '''
-                    }
-                }
-                steps {
-                    script {
-                    sh '''
                     docker run -d -p 8002:8000 --name $SERVICE_CAST $DOCKER_ID/$DOCKER_IMAGE_CAST:$DOCKER_TAG uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
                     sleep 10
                     '''
@@ -51,10 +41,6 @@ stages {
                     script {
                     sh '''
                     curl localhost:8001
-                    '''
-                    }
-                    script {
-                    sh '''
                     curl localhost:8002
                     '''
                     }
@@ -73,10 +59,6 @@ stages {
                 sh '''
                 docker login -u $DOCKER_ID -p $DOCKER_PASS
                 docker push $DOCKER_ID/$DOCKER_IMAGE_MOVIE:$DOCKER_TAG
-                '''
-                }
-                script {
-                sh '''
                 docker login -u $DOCKER_ID -p $DOCKER_PASS
                 docker push $DOCKER_ID/$DOCKER_IMAGE_SERVICE:$DOCKER_TAG
                 '''
