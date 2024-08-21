@@ -16,6 +16,9 @@ spec:
       containers:
       - name: cast-service
         image: blynhelb/castservice:{{ .Values.tag }}
+        envFrom:
+          - configMapRef:
+              name: cast-config
         ports:
           - containerPort: 8000
         command: ["uvicorn"]

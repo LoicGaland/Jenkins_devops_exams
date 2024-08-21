@@ -16,6 +16,9 @@ spec:
       containers:
       - name: movie-service
         image: blynhelb/movieservice:{{ .Values.tag }}
+        envFrom:
+          - configMapRef:
+              name: movie-config
         ports:
           - containerPort: 8000
         command: ["uvicorn"]
