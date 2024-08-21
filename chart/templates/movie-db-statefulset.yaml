@@ -20,18 +20,7 @@ spec:
           - containerPort: 5432
         volumeMounts:
           - name: postgresdata
-            mountPath: /var/lib/postgresql/data/
-        env:
-          - name: POSTGRES_USER
-            valueFrom:
-              secretKeyRef:
-                name:  movie-db-rootpass
-                key: username
-          - name: POSTGRES_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: movie-db-rootpass
-                key: password           
+            mountPath: /var/lib/postgresql/data/         
         envFrom:
           - configMapRef:
               name: movie-db-configmap

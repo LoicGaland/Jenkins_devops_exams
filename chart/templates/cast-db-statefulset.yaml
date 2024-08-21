@@ -21,17 +21,6 @@ spec:
         volumeMounts:
           - name: postgresdata
             mountPath: /var/lib/postgresql/data/
-        env:
-          - name: POSTGRES_USER
-            valueFrom:
-              secretKeyRef:
-                name:  cast-db-rootpass
-                key: username
-          - name: POSTGRES_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: cast-db-rootpass
-                key: password
         envFrom:
           - configMapRef:
               name: cast-db-configmap

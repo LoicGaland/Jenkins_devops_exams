@@ -6,3 +6,5 @@ metadata:
     app: cast-db
 data:
     POSTGRES_DB: cast_db_dev
+    POSTGRES_USER: cast_db_username
+    POSTGRES_PASSWORD: cast_db_password
