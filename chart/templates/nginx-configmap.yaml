@@ -8,10 +8,20 @@ data:
         listen 8080;
 
         location /movies/ {
-            proxy_pass http://movie-service:8001/api/v1/movies;
+            proxy_pass http://movie-service:8000/api/v1/movies;
+            rewrite ^/casts(/.*)?$ /api/v1/casts$1 break;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
         }
 
         location /casts/ {
-            proxy_pass http://cast-service:8002/api/v1/casts;
+            proxy_pass http://cast-service:8000/api/v1/casts;
+            rewrite ^/casts(/.*)?$ /api/v1/casts$1 break;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
         }
     }
